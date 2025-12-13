@@ -78,6 +78,4 @@ This project is released under the **MIT License**. You are free to use, modify,
 **Built with curiosity and many iterations.**  
 If you build this, share your results—I’d love to see your version! 🛠️✨
 
----
-
-Let me know if you'd like to add a troubleshooting section, a FAQ, or a more visual flowchart for the bot's logic!
+The current actual code which I have is given already as Codex.ino you can check it out!

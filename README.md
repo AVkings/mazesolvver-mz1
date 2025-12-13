@@ -1,8 +1,11 @@
-# 🤖 Maze-Solving Line-Following Robot – Custom PCB Project
+# Maze solver bot - using PID, LSRB and dead elemination
 
-A fully integrated line-following robot designed on a custom PCB, capable of navigating line mazes, scanning with the LSRB algorithm, and running the shortest path autonomously. Built for reliability and repeatability.
+This is a project where we have to make a bot which could solve mazes made out of lines and loops using PID and other algorithms
+this competition reprents core concets of team work and algorithm impletation in code
 
+if you want ot make same as me you just have to follow this repo
 
+starting; this is the file structure u are provided with:
 
 ## 📁 File Structure
 
@@ -28,54 +31,79 @@ A fully integrated line-following robot designed on a custom PCB, capable of nav
 ```
 
 
-## 🔧 Working of the Bot
+## Now lets talk about bot!
+let me ask you a question: _what do you think how a robot would keep up itself on line?_
+well the ans is PID
+### PID; what the hell is it?
+- well for bigginers i recommend watching some videos related to this concept
+- pid is Propotional Integral Derivative
+- this is the driver of your bot which helps your bot to be steady on line
+- well pid is used in various devices for various purposes but here we r using it to inteprete the data from sensors to code
+- hence we have used 7 array sensor it may vary on ur use
 
-### 1. **Line Following (PID)**
-The robot uses a **7-array IR sensor** to detect the black line on a white surface. A **PID controller** adjusts motor speeds in real-time to keep the robot centered, ensuring smooth and stable motion.
+### _*now that you got to know how bot gets on line lets talk about algorithms*_
+### 1. **Junction, Starting point, End point**
+- well as we are talking about maze there are various types of maze and each and everymaze contains a intersection where two or more lines meet
+- here we are specially going to learn about T junction and + junction
+  #### T junction
+  - this junction is also called a a node junction because a small dead end line is joint to a strait line liek a node of tree
+  - this junction is called node junction when we make T rotate to left/ right
+  - in normal terms to overcome T junction bot goes at front if no line detected  it would turn left and right (u will se why in next phrase)
 
-### 2. **Junction Detection & Navigation**
-- **T-Junction**: Decides turn based on the LSRB algorithm (Left/Right-hand rule).
-- **+ Junction**: Similar logic, with priority for straights or turns depending on the maze phase.
-- 
-### 3. **Maze Scanning (LSRB – Coming Soon)**
-During the first run, the robot applies the **LSRB algorithm** (Left-Straight-Right-Back) to explore the entire maze, recording each turn and junction.
+  #### + junction
+  - this junction is formed when two lines cross each other
+  - the code is almost similar to T junction but you have to do some shanges so the bot dosent stop on loops
 
-### 4. **Shortest Path Calculation (Coming Soon)**
-Once the finish line is reached, the recorded path is processed to **remove all dead-end loops**, leaving only the optimal route from start to finish.
+  #### lets talk about starting and end points
+  - starting point is the point form where u calibarte ur both and amke a run
+  - end point is a big patch of line color on which ur bot must stop and blink an led
 
-### 5. **Optimized Sprint Run**
-The robot is placed back at the start and runs the **shortest path** at high speed without further decision-making.
+### 2. **Scanning the maze _how would the bot react to each node/junction?_**
+- well in competition there are two runs:
+  #### 1. dry run
+     - in this u get total of 3 min to scan the maze but how?
+     - well here comes LSRB this is term or set of rules which decides how your bot would react on each junction
+     - LSRB is the left hand algorithm which is used to solve maze
+     - it stands for *LEFT STRAIGHT RIGHT BACK*
+     - means the bot would give priority to left then straight and so on
+       
+  #### 2. Actual run
+  - so this is the main run
+  - so as your bot has scanned the maze now your bot has make to the finish line form satrting as fast as possible
+  - for finding the shortest we have an another algo explained in next phase:
 
-
-## ⚠️ Important Note for First-Time Users
-Many of the provided firmware files combine **PID logic with specific navigation algorithms** (e.g., `pid_t_junction.ino`). This integration can be confusing if you're unfamiliar with PID or maze-solving logic.
-
-
-**Recommendation:**  
-Start with `sensor_test.ino` and `motor_test.ino` to verify your hardware before moving to the integrated PID files. Read the comments in each code file carefully—they explain what each section does and which variables you may need to adjust.
-
-
-## 🧩 Components
-All components are listed in `/Docs/components.txt` with exact specifications and recommended suppliers. The custom PCB integrates the microcontroller, motor driver, sensor ports, and power regulation—no external wiring needed if using the provided PCB design.
-
-
-## 🚀 Getting Started
-1. **Review** `components.txt` to ensure you have all parts.
-2. **Manufacture** the PCB using the Gerber files in `/PCB/`.
-3. **Upload** test sketches (`sensor_test.ino`, `motor_test.ino`) to confirm operation.
-4. **Calibrate** sensor thresholds and PID constants for your surface.
-5. **Test** junction handling on sample tracks before full maze runs.
-
-
-## 📺 See It in Action
-A demonstration video is linked in `/Assets/demo_video_link.txt`.
+### 3. **SHortest path algo**
+- While the bot is scanning the maze it is recording the maze turns/path side by side
+- the recorded path is now being used to find shortest path
+- well i cannot explain about this algo much as i havent developed it yet but still i can give u a sneak peak
+- lets suppose the bot has recorded path SLBL so now the term B means back so whatever the terms imidiately before and after it are there are replaced by the term before      them like S so now the path becomes SS
+- and at the end it just runs the recorded path hence achieving the shortest path
 
 
-## 📄 License
-This project is released under the **MIT License**. You are free to use, modify, and distribute it, but attribution is appreciated
+
+## What should you do now?
+###### well if you want to create this project i recommend you going to through each and every code given in repo and also readme files 
+
+### Getting started
+*as i have introduced you with my basic idea that how this bot works now let me tell you how could you follow this repo*
+### 1. getting components 
+- i have provide dyou all the list of components needed in bill.png
+
+### 2. understanding algorithm and core concepts 
+- my most obvious advice for you to make this project is to watch tutorial about algoriths and PID
+- if you couldnt find any you just contact me i would explain you or either i would give you best tutoring links
+
+### 3. Going through Firmware
+- you might take this part of repo lightly as it just contains small portion of main code
+- but that code is evrything you need to make this project
+- if you are able to understand those you can create one too
+
+### 4. Reviewing Codex.ino
+- the codex is not the most relevant code i would recommend
+- i would not recommend that cod eyet eventhough we won through it but the reality is that that was the base code and the code which i used got deleted
+- eventhough that code has almost everything i mentioned in this readme file but dont run that code instead use as a reference code
 
 
-**Built with curiosity and many iterations.**  
-If you build this, share your results—I’d love to see your version! 🛠️✨
-
-The current actual code which I have is given already as Codex.ino you can check it out!
+## Actual break through
+AS of my competition is near i have to make code anyhow hence the remaining codes/resources would be provided soon so stay tune
+btw ignore all spelling mistakes as my keyboard is cooked

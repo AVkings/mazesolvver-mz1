@@ -42,9 +42,13 @@ well the ans is PID
 - hence we have used 7 array sensor it may vary on ur use
 
 ### _*now that you got to know how bot gets on line lets talk about algorithms*_
+
+here is a colllective image of all the junctions:
+<img width="1280" height="720" alt="image" src="https://github.com/user-attachments/assets/e4a884e4-375e-4993-aa25-34471cea6ee8" />
+
 ### 1. **Junction, Starting point, End point**
 - well as we are talking about maze there are various types of maze and each and everymaze contains a intersection where two or more lines meet
-- here we are specially going to learn about T junction and + junction
+- here we are specially going to learn about T junction and + junction cuz other all the junctions are based on these only
   #### T junction
   - this junction is also called a a node junction because a small dead end line is joint to a strait line liek a node of tree
   - this junction is called node junction when we make T rotate to left/ right
